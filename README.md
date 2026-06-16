@@ -45,7 +45,7 @@ To get this workspace configured and running on your local environment, follow t
    python manage.py runserver
    Open your browser and navigate directly to: http://127.0.0.1:8000/
 
-   ## 🎨 Future Scaling Architecture Goals
+## 🎨 Future Scaling Architecture Goals
 
 - Complete integration of asynchronous AJAX filtering mechanics to swap brands instantly without a page reload.
 - Setup full session-based state caching for anonymous visitor shopping carts before moving to secure checkout workflows.
