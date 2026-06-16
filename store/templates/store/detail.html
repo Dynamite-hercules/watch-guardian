@@ -1,0 +1,115 @@
+{% extends 'store/base.html' %} {% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <div class="lg:col-span-7 grid grid-cols-1 gap-4">
+      <div
+        class="aspect-square bg-zinc-100 w-full overflow-hidden border border-zinc-100"
+      >
+        <img
+          id="mainProductView"
+          src="{{ watch.primary_image.url }}"
+          class="w-full h-full object-cover"
+          alt="{{ watch.title }}"
+        />
+      </div>
+      <div class="grid grid-cols-4 gap-4">
+        <button
+          onclick="swapView('{{ watch.primary_image.url }}')"
+          class="aspect-square bg-zinc-100 border border-zinc-950 overflow-hidden transition-all"
+        >
+          <img
+            src="{{ watch.primary_image.url }}"
+            class="w-full h-full object-cover"
+            alt="Primary view thumb"
+          />
+        </button>
+        {% if watch.secondary_image %}
+        <button
+          onclick="swapView('{{ watch.secondary_image.url }}')"
+          class="aspect-square bg-zinc-100 border border-transparent hover:border-zinc-400 overflow-hidden transition-all"
+        >
+          <img
+            src="{{ watch.secondary_image.url }}"
+            class="w-full h-full object-cover"
+            alt="Detail view thumb"
+          />
+        </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 space-y-8 sticky top-28">
+      <div class="border-b border-zinc-200 pb-6">
+        <span class="text-xs font-bold tracking-widest uppercase text-zinc-400"
+          >{{ watch.brand.name }}</span
+        >
+        <h1
+          class="serif-title text-4xl font-medium tracking-wide text-zinc-900 mt-2 mb-3"
+        >
+          {{ watch.title }}
+        </h1>
+        <p class="text-xl font-medium text-zinc-800 tracking-wide">
+          ${{ watch.price }}
+        </p>
+      </div>
+
+      <p class="text-sm leading-relaxed text-zinc-500 font-light">
+        {{ watch.description }}
+      </p>
+
+      <button
+        class="w-full bg-zinc-950 text-white text-xs font-medium uppercase tracking-widest py-5 transition-all duration-300 hover:bg-zinc-800 focus:ring-2 focus:ring-zinc-950"
+      >
+        Acquire Timepiece
+      </button>
+
+      <div class="border-t border-zinc-200 pt-6">
+        <h4
+          class="text-xs font-semibold uppercase tracking-widest text-zinc-900 mb-4"
+        >
+          Technical Calibration Details
+        </h4>
+        <div
+          class="divide-y divide-zinc-100 border-b border-t border-zinc-100 text-xs text-zinc-600"
+        >
+          <div class="flex justify-between py-3">
+            <span
+              class="font-medium text-zinc-400 uppercase tracking-wider text-[10px]"
+              >Movement Engine</span
+            >
+            <span class="text-zinc-900">{{ watch.get_movement_display }}</span>
+          </div>
+          <div class="flex justify-between py-3">
+            <span
+              class="font-medium text-zinc-400 uppercase tracking-wider text-[10px]"
+              >Chassis Diameter</span
+            >
+            <span class="text-zinc-900">{{ watch.case_size }} mm</span>
+          </div>
+          <div class="flex justify-between py-3">
+            <span
+              class="font-medium text-zinc-400 uppercase tracking-wider text-[10px]"
+              >Submersion Grading</span
+            >
+            <span class="text-zinc-900">{{ watch.water_resistance }}</span>
+          </div>
+          <div class="flex justify-between py-3">
+            <span
+              class="font-medium text-zinc-400 uppercase tracking-wider text-[10px]"
+              >Band Attachment</span
+            >
+            <span class="text-zinc-900">{{ watch.strap_material }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Handles fluid product thumbnail switching
+  function swapView(imgUrl) {
+    document.getElementById("mainProductView").src = imgUrl;
+  }
+</script>
+{% endblock %}

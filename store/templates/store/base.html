@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Watch Guardian | Luxury Timepieces</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+      }
+      .serif-title {
+        font-family: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body class="bg-[#fafafa] text-zinc-900 min-h-screen flex flex-col">
+    <nav class="bg-white border-b border-zinc-100 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <div class="flex-shrink-0">
+            <a
+              href="{% url 'store:product_catalog' %}"
+              class="serif-title text-xl font-semibold tracking-widest text-zinc-900 uppercase"
+            >
+              The Watch Guardian
+            </a>
+          </div>
+          <div
+            class="hidden md:flex space-x-12 tracking-widest text-xs uppercase font-medium text-zinc-500"
+          >
+            <a
+              href="{% url 'store:product_catalog' %}"
+              class="text-zinc-900 border-b border-zinc-950 pb-1"
+              >Collections</a
+            >
+            <a
+              href="#"
+              class="hover:text-zinc-900 transition-colors duration-200"
+              >Chronographs</a
+            >
+            <a
+              href="#"
+              class="hover:text-zinc-900 transition-colors duration-200"
+              >Our Story</a
+            >
+          </div>
+          <div class="flex items-center space-x-6 text-zinc-700">
+            <button
+              onclick="toggleCartDrawer()"
+              class="hover:text-zinc-950 transition-colors relative flex items-center"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+              <span
+                class="absolute -top-1.5 -right-2 bg-zinc-950 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+                >1</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="cartDrawer"
+      class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out border-l border-zinc-100 flex flex-col"
+    >
+      <div
+        class="p-6 border-b border-zinc-100 flex justify-between items-center"
+      >
+        <h3 class="serif-title text-lg font-medium tracking-wide">
+          Your Collection
+        </h3>
+        <button
+          onclick="toggleCartDrawer()"
+          class="text-zinc-400 hover:text-zinc-950 text-xl"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 space-y-6">
+        <p class="text-zinc-500 text-xs tracking-wider">
+          Your bag is looking sparse. Add pieces below.
+        </p>
+      </div>
+    </div>
+
+    <main class="flex-1">{% block content %} {% endblock %}</main>
+
+    <footer
+      class="bg-zinc-950 text-zinc-400 text-xs py-12 mt-auto tracking-wider border-t border-zinc-900"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-zinc-600"
+      >
+        <p>
+          &copy; 2026 The Watch Guardian Portfolio Project. Handcrafted with
+          Django & Tailwind.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleCartDrawer() {
+        const drawer = document.getElementById("cartDrawer");
+        drawer.classList.toggle("translate-x-full");
+      }
+    </script>
+  </body>
+</html>
